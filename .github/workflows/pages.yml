@@ -1,0 +1,41 @@
+name: GitHub Pages
+
+# Каждый пуш в main публикует сайт в ветку gh-pages,
+# из которой GitHub Pages раздаёт https://kubok758.github.io/Casino/
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Проверка RTP
+        run: node tools/rtp.js
+
+      - name: Сборка сайта
+        run: |
+          mkdir _site
+          cp -r index.html css js .nojekyll _site/
+
+      - name: Публикация в gh-pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd _site
+          git init -q -b gh-pages
+          git add -A
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Deploy ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages

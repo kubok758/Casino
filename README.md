@@ -11,7 +11,10 @@
 
 ## Запуск
 
-Откройте `index.html` в браузере. Или поднимите локальный сервер:
+Сайт опубликован на GitHub Pages: **https://kubok758.github.io/Casino/**. Каждый пуш в `main`
+пересобирает его через `.github/workflows/pages.yml` (публикация в ветку `gh-pages`).
+
+Локально — откройте `index.html` в браузере или поднимите сервер:
 
 ```bash
 python3 -m http.server 8000
