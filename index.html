@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Aurum Casino</title>
+  <meta name="description" content="Демо-казино Aurum: три игровых автомата — механический Lucky 7, видеослот Cosmic Fortune и Crown Jewels — на общем балансе виртуальных кредитов.">
+  <meta name="theme-color" content="#120709">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23170b0e' stroke='%23c9a24d' stroke-width='3'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='42' fill='%23e3121f'%3E7%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@800;900&family=Jost:wght@300;400;500;600;700;800&family=Limelight&family=Unbounded:wght@600;800;900&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Aurum — к началу зала">
+      <svg class="brand-mark" viewBox="0 0 48 32" aria-hidden="true">
+        <defs>
+          <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fbe9b0"/>
+            <stop offset=".5" stop-color="#d4a443"/>
+            <stop offset="1" stop-color="#7a5414"/>
+          </linearGradient>
+        </defs>
+        <path d="M2 30 A22 22 0 0 1 46 30 Z" fill="none" stroke="url(#brass)" stroke-width="2"/>
+        <g stroke="url(#brass)" stroke-width="1.6" stroke-linecap="round">
+          <line x1="24" y1="30" x2="24" y2="11"/>
+          <line x1="24" y1="30" x2="12.5" y2="14"/>
+          <line x1="24" y1="30" x2="35.5" y2="14"/>
+          <line x1="24" y1="30" x2="6" y2="22"/>
+          <line x1="24" y1="30" x2="42" y2="22"/>
+        </g>
+        <circle cx="24" cy="30" r="5" fill="url(#brass)"/>
+      </svg>
+      <span class="brand-name">Aurum</span>
+      <span class="brand-sub">casino</span>
+    </a>
+
+    <nav class="floor-nav" aria-label="Автоматы">
+      <a href="#lucky-7">Lucky 7</a>
+      <a href="#cosmic-fortune">Cosmic Fortune</a>
+      <a href="#crown-jewels">Crown Jewels</a>
+    </nav>
+
+    <div class="wallet">
+      <div class="wallet-balance" role="status" aria-live="off">
+        <span class="wallet-label">Баланс</span>
+        <span class="wallet-value"><span class="chip" aria-hidden="true"></span><span id="balance">1 000</span></span>
+      </div>
+      <button class="refill" id="refill" type="button" hidden>+1 000</button>
+      <button class="icon-btn" id="sound-toggle" type="button" aria-pressed="true" aria-label="Выключить звук">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path class="spk" d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/>
+          <path class="wave" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>
+          <path class="mute" d="M16 9.5l5 5M21 9.5l-5 5"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="intro">
+      <p class="eyebrow">Демо-зал · общий баланс · виртуальные кредиты</p>
+      <h1>Зал игровых автоматов</h1>
+      <p class="lede">Механический однорукий бандит, видеослот с бонусной игрой и ювелирный автомат на пять линий. На старте — 1&nbsp;000 кредитов, баланс общий для всех трёх.</p>
+    </section>
+
+    <section class="floor" aria-label="Игровые автоматы">
+
+      <!-- ============ LUCKY 7 ============ -->
+      <article class="machine m-classic" id="lucky-7" aria-labelledby="t-classic">
+        <div class="cabinet">
+          <header class="topper">
+            <div class="bulbs" data-bulbs aria-hidden="true"></div>
+            <div class="marquee">
+              <p class="marquee-kicker">Three reel · 1962</p>
+              <h2 class="marquee-title" id="t-classic">Lucky <span>7</span></h2>
+            </div>
+          </header>
+
+          <div class="screen">
+            <div class="window">
+              <canvas class="reels-canvas" aria-label="Барабаны Lucky 7" role="img"></canvas>
+              <div class="payline" aria-hidden="true"></div>
+              <div class="glass" aria-hidden="true"></div>
+              <div class="overlay" data-overlay hidden>
+                <div class="ov-rays" aria-hidden="true"></div>
+                <p class="ov-kicker"></p>
+                <p class="ov-amount"></p>
+                <p class="ov-note"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="meters">
+            <div class="meter" data-credit><span class="meter-label">Кредит</span><span class="led"><span class="led-ghost" aria-hidden="true">888888</span><span class="led-val">0</span></span></div>
+            <div class="meter" data-bet><span class="meter-label">Ставка</span><span class="led"><span class="led-ghost" aria-hidden="true">88</span><span class="led-val">0</span></span></div>
+            <div class="meter" data-win><span class="meter-label">Выигрыш</span><span class="led"><span class="led-ghost" aria-hidden="true">88888</span><span class="led-val">0</span></span></div>
+          </div>
+
+          <p class="status" data-status></p>
+
+          <div class="deck">
+            <button class="key" type="button" data-act="bet-down" aria-label="Уменьшить ставку">−</button>
+            <button class="key" type="button" data-act="bet-up" aria-label="Увеличить ставку">+</button>
+            <button class="key key-max" type="button" data-act="max" title="Максимальная ставка и вращение">Макс</button>
+            <button class="key key-auto" type="button" data-act="auto" aria-pressed="false">Авто</button>
+            <button class="spin" type="button" data-act="spin"><span class="spin-label">Крутить</span></button>
+          </div>
+
+          <div class="belly">
+            <p class="belly-title">Выплаты за 1 кредит</p>
+            <div class="belly-table" data-belly></div>
+            <button class="belly-more" type="button" data-act="info">Правила автомата</button>
+          </div>
+
+          <div class="tray" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="lever" aria-hidden="true" title="Потяните рычаг">
+          <div class="lever-mount"></div>
+          <div class="lever-arm">
+            <div class="lever-rod"></div>
+            <div class="lever-knob"></div>
+          </div>
+        </div>
+
+        <ul class="specs" aria-label="Характеристики Lucky 7">
+          <li><b>96,28 %</b> RTP</li>
+          <li><b>18 %</b> вращений с выигрышем</li>
+          <li><b>1 000×</b> за три семёрки</li>
+        </ul>
+      </article>
+
+      <!-- ============ COSMIC FORTUNE ============ -->
+      <article class="machine m-cosmic" id="cosmic-fortune" aria-labelledby="t-cosmic">
+        <div class="cabinet">
+          <header class="topper">
+            <div class="topper-sky" aria-hidden="true">
+              <i class="p1"></i><i class="p2"></i><i class="p3"></i>
+            </div>
+            <p class="marquee-kicker">Video slot · 5 × 3 · 10 lines</p>
+            <h2 class="marquee-title" id="t-cosmic">Cosmic <span>Fortune</span></h2>
+          </header>
+
+          <div class="screen">
+            <div class="badges" data-badges="left" aria-hidden="true"></div>
+            <div class="window">
+              <canvas class="reels-canvas" aria-label="Барабаны Cosmic Fortune" role="img"></canvas>
+              <div class="glass" aria-hidden="true"></div>
+              <p class="fs-badge" data-fs hidden>Бесплатные вращения <b data-fs-count>0 / 10</b> <span>×2</span></p>
+              <div class="overlay" data-overlay hidden>
+                <div class="ov-rays" aria-hidden="true"></div>
+                <p class="ov-kicker"></p>
+                <p class="ov-amount"></p>
+                <p class="ov-note"></p>
+              </div>
+            </div>
+            <div class="badges" data-badges="right" aria-hidden="true"></div>
+          </div>
+
+          <div class="meters">
+            <div class="meter" data-credit><span class="meter-label">Кредит</span><span class="led"><span class="led-val">0</span></span></div>
+            <div class="meter" data-bet><span class="meter-label">Ставка</span><span class="led"><span class="led-val">0</span></span></div>
+            <div class="meter" data-win><span class="meter-label">Выигрыш</span><span class="led"><span class="led-val">0</span></span></div>
+          </div>
+
+          <p class="status" data-status></p>
+
+          <div class="deck">
+            <button class="key" type="button" data-act="bet-down" aria-label="Уменьшить ставку">−</button>
+            <button class="key" type="button" data-act="bet-up" aria-label="Увеличить ставку">+</button>
+            <button class="key key-max" type="button" data-act="max" title="Максимальная ставка и вращение">Макс</button>
+            <button class="key key-auto" type="button" data-act="auto" aria-pressed="false">Авто</button>
+            <button class="key key-info" type="button" data-act="info" aria-label="Таблица выплат">i</button>
+            <button class="spin" type="button" data-act="spin">
+              <svg class="spin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5"/></svg>
+              <span class="spin-label">Крутить</span>
+            </button>
+          </div>
+
+          <div class="base">
+            <i class="grille" aria-hidden="true"></i>
+            <div class="base-glass">
+              <img data-sym="GALAXY" width="64" height="64" alt="">
+              <div>
+                <p class="base-kicker">Бонусная игра</p>
+                <p class="base-title">3 галактики — 10 бесплатных вращений</p>
+                <p class="base-note">Все выигрыши на линиях ×2</p>
+              </div>
+            </div>
+            <i class="grille" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <ul class="specs" aria-label="Характеристики Cosmic Fortune">
+          <li><b>95,58 %</b> RTP</li>
+          <li><b>26 %</b> вращений с выигрышем</li>
+          <li><b>1 из 222</b> бонус</li>
+        </ul>
+      </article>
+
+      <!-- ============ CROWN JEWELS ============ -->
+      <article class="machine m-jewels" id="crown-jewels" aria-labelledby="t-jewels">
+        <div class="cabinet">
+          <header class="topper">
+            <svg class="crest" viewBox="0 0 120 70" aria-hidden="true">
+              <defs>
+                <linearGradient id="crest-gold" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#fff3c4"/>
+                  <stop offset=".45" stop-color="#e6b440"/>
+                  <stop offset=".75" stop-color="#9a6a0c"/>
+                  <stop offset="1" stop-color="#f0cc6a"/>
+                </linearGradient>
+                <radialGradient id="crest-ruby" cx=".35" cy=".35" r=".7">
+                  <stop offset="0" stop-color="#ffd0d8"/>
+                  <stop offset=".5" stop-color="#e0102f"/>
+                  <stop offset="1" stop-color="#5a0010"/>
+                </radialGradient>
+              </defs>
+              <path d="M14 60 L8 18 L34 40 L60 6 L86 40 L112 18 L106 60 Z" fill="url(#crest-gold)" stroke="#4e3000" stroke-width="2" stroke-linejoin="round"/>
+              <rect x="12" y="54" width="96" height="14" rx="4" fill="url(#crest-gold)" stroke="#4e3000" stroke-width="2"/>
+              <circle cx="8" cy="16" r="5" fill="#f4ecdc" stroke="#4e3000"/>
+              <circle cx="60" cy="5" r="5.5" fill="#f4ecdc" stroke="#4e3000"/>
+              <circle cx="112" cy="16" r="5" fill="#f4ecdc" stroke="#4e3000"/>
+              <ellipse cx="60" cy="61" rx="7" ry="5" fill="url(#crest-ruby)" stroke="#4e3000"/>
+              <circle cx="36" cy="61" r="3.5" fill="#2160e0" stroke="#4e3000"/>
+              <circle cx="84" cy="61" r="3.5" fill="#14a050" stroke="#4e3000"/>
+            </svg>
+            <div class="marquee">
+              <p class="marquee-kicker">Stepper reels · 5 lines</p>
+              <h2 class="marquee-title" id="t-jewels">Crown <span>Jewels</span></h2>
+            </div>
+            <i class="sparkle s1" aria-hidden="true"></i><i class="sparkle s2" aria-hidden="true"></i><i class="sparkle s3" aria-hidden="true"></i>
+          </header>
+
+          <div class="screen">
+            <div class="badges" data-badges="left" aria-hidden="true"></div>
+            <div class="window">
+              <canvas class="reels-canvas" aria-label="Барабаны Crown Jewels" role="img"></canvas>
+              <div class="glass" aria-hidden="true"></div>
+              <div class="overlay" data-overlay hidden>
+                <div class="ov-rays" aria-hidden="true"></div>
+                <p class="ov-kicker"></p>
+                <p class="ov-amount"></p>
+                <p class="ov-note"></p>
+              </div>
+            </div>
+            <div class="badges" data-badges="right" aria-hidden="true"></div>
+          </div>
+
+          <div class="meters">
+            <div class="meter" data-credit><span class="meter-label">Кредит</span><span class="led"><span class="led-ghost" aria-hidden="true">888888</span><span class="led-val">0</span></span></div>
+            <div class="meter" data-bet><span class="meter-label">Ставка</span><span class="led"><span class="led-ghost" aria-hidden="true">888</span><span class="led-val">0</span></span></div>
+            <div class="meter" data-win><span class="meter-label">Выигрыш</span><span class="led"><span class="led-ghost" aria-hidden="true">88888</span><span class="led-val">0</span></span></div>
+          </div>
+
+          <p class="status" data-status></p>
+
+          <div class="deck">
+            <button class="key" type="button" data-act="bet-down" aria-label="Уменьшить ставку">−</button>
+            <button class="key" type="button" data-act="bet-up" aria-label="Увеличить ставку">+</button>
+            <button class="key key-max" type="button" data-act="max" title="Максимальная ставка и вращение">Макс</button>
+            <button class="key key-auto" type="button" data-act="auto" aria-pressed="false">Авто</button>
+            <button class="key key-info" type="button" data-act="info" aria-label="Таблица выплат">i</button>
+            <button class="spin" type="button" data-act="spin"><span class="spin-label">Крутить</span></button>
+          </div>
+
+          <div class="base">
+            <div class="base-glass">
+              <img data-sym="CROWN" width="64" height="64" alt="">
+              <div>
+                <p class="base-kicker">Королевская линия</p>
+                <p class="base-title">Три короны — 300 × ставка на линию</p>
+                <p class="base-note">Корона заменяет любой камень</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="specs" aria-label="Характеристики Crown Jewels">
+          <li><b>96,42 %</b> RTP</li>
+          <li><b>30 %</b> вращений с выигрышем</li>
+          <li><b>300×</b> за три короны</li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="carpet" aria-hidden="true"></div>
+
+    <section class="info" aria-label="Как устроен зал">
+      <div class="info-col">
+        <h2>Как играть</h2>
+        <ol class="howto">
+          <li><b>Ставка.</b> Кнопки «−» и «+» меняют ставку, «Макс» ставит максимум и сразу запускает вращение.</li>
+          <li><b>Вращение.</b> «Крутить», пробел или рычаг Lucky 7 — потяните его вниз мышью или пальцем. Повторное нажатие во время вращения останавливает барабаны.</li>
+          <li><b>Выигрыш.</b> Комбинации считаются по линиям слева направо, выигрыш сразу зачисляется на общий баланс.</li>
+        </ol>
+      </div>
+      <div class="info-col">
+        <h2>Математика автоматов</h2>
+        <p class="info-text">Процент возврата посчитан полным перебором всех остановок барабанов — без округлений «на глаз». Результат каждого вращения выбирает криптографический генератор браузера.</p>
+        <div class="table-wrap">
+          <table class="rtp">
+            <thead><tr><th scope="col">Автомат</th><th scope="col">RTP</th><th scope="col">Выигрыш</th><th scope="col">Максимум</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Lucky 7</th><td>96,28 %</td><td>1 из 5,5</td><td>1 000×</td></tr>
+              <tr><th scope="row">Cosmic Fortune</th><td>95,58 %</td><td>1 из 3,8</td><td>2 500× линии</td></tr>
+              <tr><th scope="row">Crown Jewels</th><td>96,42 %</td><td>1 из 3,3</td><td>300× линии</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="info-col">
+        <h2>Ваша сессия</h2>
+        <dl class="session">
+          <div><dt>Вращений</dt><dd data-stat="spins">0</dd></div>
+          <div><dt>Поставлено</dt><dd data-stat="bet">0</dd></div>
+          <div><dt>Выиграно</dt><dd data-stat="won">0</dd></div>
+          <div><dt>Лучший выигрыш</dt><dd data-stat="best">0</dd></div>
+          <div class="session-rtp"><dt>Фактический возврат</dt><dd data-stat="rtp">—</dd></div>
+        </dl>
+        <p class="info-text">На короткой дистанции возврат скачет в обе стороны — к расчётному значению он приближается за десятки тысяч вращений.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><b>Aurum</b> — демонстрационный проект. Игра идёт только на виртуальные кредиты: без денежных ставок, пополнений и выплат. Баланс хранится в этом браузере. 18+</p>
+  </footer>
+
+  <dialog class="paytable" id="paytable" aria-labelledby="pt-title">
+    <div class="pt-card">
+      <header class="pt-header">
+        <div>
+          <h2 id="pt-title">Таблица выплат</h2>
+          <p id="pt-sub"></p>
+        </div>
+        <button class="pt-close" type="button" data-close aria-label="Закрыть">×</button>
+      </header>
+      <div class="pt-body" id="pt-body"></div>
+    </div>
+  </dialog>
+
+  <canvas class="fx-layer" id="fx" aria-hidden="true"></canvas>
+  <div class="sr-only" id="announcer" aria-live="polite"></div>
+
+  <script src="js/engine.js"></script>
+  <script src="js/symbols.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/reels.js"></script>
+  <script src="js/fx.js"></script>
+  <script src="js/machine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
